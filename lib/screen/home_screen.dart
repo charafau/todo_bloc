@@ -24,13 +24,9 @@ class HomeScreen extends StatelessWidget {
           switch (result.status) {
             case Status.SUCCESS:
               {
-                return ListView.builder(
-                  itemCount: result.data.length,
-                  itemBuilder: (context, index) {
-                    Todo currentItem = result.data[index];
-                    return TodoViewItem(todo: currentItem);
-                  },
-                );
+                return result.data.length > 0
+                    ? _buildItemList(result)
+                    : _buildEmptyMessage();
               }
             case Status.LOADING:
               {
@@ -50,6 +46,26 @@ class HomeScreen extends StatelessWidget {
               }
           }
         },
+      ),
+    );
+  }
+
+  ListView _buildItemList(Result<BuiltList<Todo>> result) {
+    return ListView.builder(
+      itemCount: result.data.length,
+      itemBuilder: (context, index) {
+        Todo currentItem = result.data[index];
+        return TodoViewItem(todo: currentItem);
+      },
+    );
+  }
+
+  Center _buildEmptyMessage() {
+    return Center(
+      child: Text(
+        "You don't have any todos yet.\nLet's add some!",
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 16.0),
       ),
     );
   }

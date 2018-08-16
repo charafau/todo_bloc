@@ -6,6 +6,7 @@ import 'package:todo_bloc/model/todo.dart';
 import 'package:todo_bloc/utils/result.dart';
 import 'package:todo_bloc/utils/status.dart';
 import 'package:todo_bloc/di/service_locator.dart';
+import 'package:todo_bloc/view/todo_view_item.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                   itemCount: result.data.length,
                   itemBuilder: (context, index) {
                     Todo currentItem = result.data[index];
-                    return Text(currentItem.name);
+                    return TodoViewItem(todo: currentItem);
                   },
                 );
               }

@@ -9,3 +9,5 @@ build/
 .flutter-plugins
 .idea/
 *.iml
+
+google-services.json

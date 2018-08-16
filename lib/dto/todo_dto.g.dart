@@ -14,6 +14,54 @@ part of todo;
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: sort_constructors_first
 
+Serializer<TodoDto> _$todoDtoSerializer = new _$TodoDtoSerializer();
+
+class _$TodoDtoSerializer implements StructuredSerializer<TodoDto> {
+  @override
+  final Iterable<Type> types = const [TodoDto, _$TodoDto];
+  @override
+  final String wireName = 'TodoDto';
+
+  @override
+  Iterable serialize(Serializers serializers, TodoDto object,
+      {FullType specifiedType: FullType.unspecified}) {
+    final result = <Object>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'is_checked',
+      serializers.serialize(object.isChecked,
+          specifiedType: const FullType(bool)),
+    ];
+
+    return result;
+  }
+
+  @override
+  TodoDto deserialize(Serializers serializers, Iterable serialized,
+      {FullType specifiedType: FullType.unspecified}) {
+    final result = new TodoDtoBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'is_checked':
+          result.isChecked = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$TodoDto extends TodoDto {
   @override
   final String name;

@@ -16,6 +16,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: (){}),
       body: StreamBuilder<Result<BuiltList<Todo>>>(
         initialData: Result.loading(),
         stream: todoBloc.todos,

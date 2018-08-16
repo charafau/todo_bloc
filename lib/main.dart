@@ -12,6 +12,13 @@ const title = 'Todo BLoC';
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: title, home: HomeScreen());
+    return MaterialApp(
+        title: title,
+        home: HomeScreen(),
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.lime[500],
+          accentColor: Colors.deepOrangeAccent,
+        ));
   }
 }

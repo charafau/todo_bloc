@@ -17,4 +17,10 @@ abstract class Todo implements Built<Todo, TodoBuilder> {
   factory Todo.fromDto(TodoDto dto) => Todo((b) => b
     ..name = dto.name
     ..isChecked = dto.isChecked);
+
+  TodoDto toDto() {
+    return TodoDto((b) => b
+      ..name = name
+      ..isChecked = isChecked);
+  }
 }

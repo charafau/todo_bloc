@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_bloc/bloc/todo_bloc.dart';
 import 'package:todo_bloc/main.dart';
 import 'package:todo_bloc/model/todo.dart';
+import 'package:todo_bloc/screen/add_screen.dart';
 import 'package:todo_bloc/utils/result.dart';
 import 'package:todo_bloc/utils/status.dart';
 import 'package:todo_bloc/di/service_locator.dart';
@@ -18,7 +19,10 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: (){}),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AddScreen()));
+          }),
       body: StreamBuilder<Result<BuiltList<Todo>>>(
         initialData: Result.loading(),
         stream: todoBloc.todos,

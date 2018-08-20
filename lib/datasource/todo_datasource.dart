@@ -5,4 +5,6 @@ import 'package:todo_bloc/dto/todo_dto.dart';
 
 abstract class TodoDataSource {
   Future<BuiltList<TodoDto>> getTodos();
+
+  Future<void> saveTodo(TodoDto dto);
 }

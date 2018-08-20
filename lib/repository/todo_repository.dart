@@ -4,4 +4,7 @@ import 'package:todo_bloc/model/todo.dart';
 
 abstract class TodoRepository {
   Observable<BuiltList<Todo>> getTodos();
+
+  Observable<BuiltList<Todo>> saveTodo(Todo todo);
+
 }

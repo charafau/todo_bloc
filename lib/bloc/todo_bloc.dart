@@ -15,8 +15,13 @@ class TodoBloc {
 
   PublishSubject<void> fetchTodos = PublishSubject<void>();
 
+  PublishSubject<Todo> addTodo = PublishSubject<Todo>();
+
   TodoBloc(this._todoRepository) {
-    _todos = fetchTodos.switchMap((_) => _getTodos());
+    _todos = Observable.merge([
+      fetchTodos.switchMap((_) => _getTodos()),
+      addTodo.switchMap((Todo todo) => _addTodo(todo))
+    ]);
   }
 
   Stream<Result<BuiltList<Todo>>> _getTodos() async* {
@@ -26,6 +31,16 @@ class TodoBloc {
       yield* _todoRepository.getTodos().map((data) => Result.success(data));
     } catch (e) {
       yield Result.error(e.toString());
+    }
+  }
+
+  Stream<Result<BuiltList<Todo>>> _addTodo(Todo todo) async* {
+    try {
+      yield* _todoRepository.saveTodo(todo).map((BuiltList<Todo> data) {
+        return Result.success(data);
+      });
+    } catch(e) {
+     yield Result.error(e.toString());
     }
   }
 }

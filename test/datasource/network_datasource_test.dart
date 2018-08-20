@@ -27,12 +27,9 @@ main() {
     });
 
     test('it should fetch and transform to classes', () async {
-      when(dataSnapshot.value).thenReturn('''
-        [{
-          "name": "Make dinner",
-          "is_checked": false
-        }]
-      ''');
+      when(dataSnapshot.value).thenReturn([
+        {'name': 'Make dinner', 'is_checked': false}
+      ]);
 
       var mainReference = MockDatabaseReference();
       when(firebaseDatabase.reference()).thenReturn(mainReference);

@@ -5,6 +5,7 @@ import 'package:todo_bloc/main.dart';
 import 'package:todo_bloc/model/todo.dart';
 import 'package:todo_bloc/screen/add_screen.dart';
 import 'package:todo_bloc/utils/result.dart';
+import 'package:todo_bloc/utils/screen_navigator.dart';
 import 'package:todo_bloc/utils/status.dart';
 import 'package:todo_bloc/di/service_locator.dart';
 import 'package:todo_bloc/view/todo_view_item.dart';
@@ -20,8 +21,8 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AddScreen()));
+            ScreenNavigator nav = sl.get<ScreenNavigator>();
+            nav.openAddScreen(context);
           }),
       body: StreamBuilder<Result<BuiltList<Todo>>>(
         initialData: Result.loading(),

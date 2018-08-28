@@ -15,6 +15,7 @@ class NetworkTodoRepository extends TodoRepository {
   @override
   Observable<BuiltList<Todo>> getTodos() =>
       Observable(_todoDataSource.getTodos().asStream()).map((data) {
+        print('got it');
         return BuiltList<Todo>(data.map((dto) => Todo.fromDto(dto)));
       });
 

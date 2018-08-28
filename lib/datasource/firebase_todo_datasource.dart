@@ -18,6 +18,7 @@ class FirebaseTodoDataSource extends TodoDataSource {
   @override
   Future<BuiltList<TodoDto>> getTodos() {
     DatabaseReference databaseTodoReference = _getTodoReference();
+    print('dupa');
     return databaseTodoReference.once().then((DataSnapshot snapshot) {
       var value = snapshot.value;
       if (value != null) {

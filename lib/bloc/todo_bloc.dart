@@ -39,8 +39,8 @@ class TodoBloc {
       yield* _todoRepository.saveTodo(todo).map((BuiltList<Todo> data) {
         return Result.success(data);
       });
-    } catch(e) {
-     yield Result.error(e.toString());
+    } catch (e) {
+      yield Result.error(e.toString());
     }
   }
 }

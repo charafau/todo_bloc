@@ -10,21 +10,6 @@ class InMemoryDataSource extends TodoDataSource {
     TodoDto((b) => b
       ..name = "Todo 1"
       ..isChecked = false),
-    TodoDto((b) => b
-      ..name = "Todo 2"
-      ..isChecked = false),
-    TodoDto((b) => b
-      ..name = "Todo 3"
-      ..isChecked = false),
-    TodoDto((b) => b
-      ..name = "Todo 4"
-      ..isChecked = false),
-    TodoDto((b) => b
-      ..name = "Todo 5"
-      ..isChecked = false),
-    TodoDto((b) => b
-      ..name = "Todo 6"
-      ..isChecked = false),
   ]);
   
   @override

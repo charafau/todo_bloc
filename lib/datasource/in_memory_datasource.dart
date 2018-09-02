@@ -25,7 +25,7 @@ class InMemoryDataSource extends TodoDataSource {
       ..add(dto)
     );
 
-    return;
+    return Future.value(inMemoryCache);
 
   }
 }

@@ -15,13 +15,17 @@ void main() {
       }
     });
 
-    test("Should have Todo 1", () async {
-      await driver.waitFor(find.text("Todo 1"));
-    });
-
-    test("Should navigate to next screen", () async {
-      driver.tap(find.byType("FloatingActionButton"));
+    test("Should add new todo", () async {
+      await driver.tap(find.byType("FloatingActionButton"));
       await driver.waitFor(find.text("Add new todo"));
+
+      await driver.tap(find.byType("TextFormField"));
+
+      await driver.enterText('Buy milk');
+
+      await driver.tap(find.text('ADD'));
+
+      await driver.waitFor(find.text('Buy milk'));
     });
   });
 }

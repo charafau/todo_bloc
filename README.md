@@ -1,4 +1,5 @@
-https://travis-ci.org/charafau/todo_bloc.svg?branch=master
+![ci status](https://travis-ci.org/charafau/todo_bloc.svg?branch=master)
+
 
 # todo_bloc
 

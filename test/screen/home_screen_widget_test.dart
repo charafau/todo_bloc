@@ -10,12 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:todo_bloc/bloc/todo_bloc.dart';
-import 'package:todo_bloc/datasource/in_memory_datasource.dart';
-import 'package:todo_bloc/datasource/todo_datasource.dart';
 import 'package:todo_bloc/main.dart';
 import 'package:todo_bloc/di/service_locator.dart';
 import 'package:todo_bloc/model/todo.dart';
-import 'package:todo_bloc/repository/todo_repository.dart';
 import 'package:todo_bloc/utils/result.dart';
 
 class MockTodoBloc extends Mock implements TodoBloc {}
@@ -34,14 +31,15 @@ void main() {
       sl.registerSingleton<TodoBloc>(bloc);
       observer = MockNavigatorObserver();
 
-      when(bloc.fetchTodos).thenReturn(PublishSubject<void>());
+      when(bloc.fetchTodos).thenAnswer((_) => PublishSubject<void>());
+      // bloc.fetchTodos = PublishSubject();
     });
 
     testWidgets('Should show circular loading when status is loading',
         (WidgetTester tester) async {
       var publishSubject =
           BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
-      when(bloc.todos).thenReturn(publishSubject);
+      when(bloc.todos).thenAnswer((_) => publishSubject);
 
       // Build our app and trigger a frame.
       await tester.pumpWidget(new MainApp());
@@ -52,7 +50,7 @@ void main() {
     testWidgets('Should show todo after loading', (WidgetTester tester) async {
       var publishSubject =
           BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
-      when(bloc.todos).thenReturn(publishSubject);
+      when(bloc.todos).thenAnswer((_) => publishSubject);
 
       // Build our app and trigger a frame.
       await tester.pumpWidget(new MainApp());
@@ -74,7 +72,7 @@ void main() {
         (WidgetTester tester) async {
       var publishSubject =
           BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
-      when(bloc.todos).thenReturn(publishSubject);
+      when(bloc.todos).thenAnswer((_) => publishSubject);
 
       // Build our app and trigger a frame.
       await tester.pumpWidget(new MainApp());
@@ -91,7 +89,7 @@ void main() {
     testWidgets('Should have FAB for add items', (WidgetTester tester) async {
       var publishSubject =
           BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
-      when(bloc.todos).thenReturn(publishSubject);
+      when(bloc.todos).thenAnswer((_) => publishSubject);
 
       // Build our app and trigger a frame.
       await tester.pumpWidget(new MainApp());
@@ -99,10 +97,11 @@ void main() {
       expect(find.byType(FloatingActionButton), findsOneWidget);
     });
 
-    testWidgets('Should navigate to new screen when click FAB', (WidgetTester tester) async {
+    testWidgets('Should navigate to new screen when click FAB',
+        (WidgetTester tester) async {
       var publishSubject =
-      BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
-      when(bloc.todos).thenReturn(publishSubject);
+          BehaviorSubject<Result<BuiltList<Todo>>>(seedValue: Result.loading());
+      when(bloc.todos).thenAnswer((_) => publishSubject);
 
       // Build our app and trigger a frame.
       await tester.pumpWidget(new MainApp());

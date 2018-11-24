@@ -6,6 +6,7 @@ import 'package:test/test.dart';
 import 'package:todo_bloc/di/serializers.dart';
 import 'package:todo_bloc/dto/todo_dto.dart';
 
+
 main() {
   group('all fields json', () {
     final String jsonString = '''

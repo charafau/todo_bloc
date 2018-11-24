@@ -1,10 +1,8 @@
-import 'dart:async';
 
 import 'package:built_collection/src/list.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:test/test.dart';
 import 'package:todo_bloc/bloc/todo_bloc.dart';
-import 'package:todo_bloc/dto/todo_dto.dart';
 import 'package:todo_bloc/model/todo.dart';
 import 'package:todo_bloc/repository/mock_todo_repository.dart';
 import 'package:todo_bloc/repository/todo_repository.dart';
@@ -29,7 +27,7 @@ main() {
 
     test('should return todos when call sink', () async {
       when(todoRepository.getTodos())
-          .thenReturn(Observable.just(BuiltList<Todo>([
+          .thenAnswer((_) => Observable.just(BuiltList<Todo>([
         Todo((b) => b
           ..name = "Todo 1"
           ..isChecked = false),

@@ -20,8 +20,7 @@ class MockTodoRepository extends TodoRepository {
 
   @override
   Observable<BuiltList<Todo>> saveTodo(Todo todo) {
-    return Observable
-        .fromFuture(_todoDataSource.saveTodo(todo.toDto()))
+    return Observable.fromFuture(_todoDataSource.saveTodo(todo.toDto()))
         .switchMap((_) {
       return getTodos();
     });

@@ -9,10 +9,15 @@ part of todo;
 // ignore_for_file: always_put_control_body_on_new_line
 // ignore_for_file: annotate_overrides
 // ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: avoid_catches_without_on_clauses
 // ignore_for_file: avoid_returning_this
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: omit_local_variable_types
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: sort_constructors_first
+// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_new
+// ignore_for_file: test_types_in_equals
 
 class _$Todo extends Todo {
   @override
@@ -24,9 +29,12 @@ class _$Todo extends Todo {
       (new TodoBuilder()..update(updates)).build();
 
   _$Todo._({this.name, this.isChecked}) : super._() {
-    if (name == null) throw new BuiltValueNullFieldError('Todo', 'name');
-    if (isChecked == null)
+    if (name == null) {
+      throw new BuiltValueNullFieldError('Todo', 'name');
+    }
+    if (isChecked == null) {
       throw new BuiltValueNullFieldError('Todo', 'isChecked');
+    }
   }
 
   @override
@@ -37,10 +45,9 @@ class _$Todo extends Todo {
   TodoBuilder toBuilder() => new TodoBuilder()..replace(this);
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    if (other is! Todo) return false;
-    return name == other.name && isChecked == other.isChecked;
+    return other is Todo && name == other.name && isChecked == other.isChecked;
   }
 
   @override
@@ -81,7 +88,9 @@ class TodoBuilder implements Builder<Todo, TodoBuilder> {
 
   @override
   void replace(Todo other) {
-    if (other == null) throw new ArgumentError.notNull('other');
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
     _$v = other as _$Todo;
   }
 

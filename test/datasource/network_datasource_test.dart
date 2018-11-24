@@ -38,7 +38,7 @@ main() {
       when(mainReference.child(FirebaseTodoDataSource.TODOS_COLLECTION))
           .thenReturn(todoReference);
 
-      when(todoReference.once()).thenReturn(Future.value(dataSnapshot));
+      when(todoReference.once()).thenAnswer((_) => Future.value(dataSnapshot));
 
       var expected = BuiltList<TodoDto>([
         TodoDto((b) => b

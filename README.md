@@ -1,4 +1,4 @@
-![ci status](https://travis-ci.org/charafau/todo_bloc.svg?branch=master)
+[<img src="https://travis-ci.org/charafau/todo_bloc.svg?branch=master">](https://travis-ci.org/charafau/todo_bloc)
 
 
 # todo_bloc
